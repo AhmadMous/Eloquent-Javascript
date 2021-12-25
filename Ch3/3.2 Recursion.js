@@ -19,8 +19,8 @@ function isEven(x){
     if (x < 0)
       return isEven(x*-1); //if it's negative convert it to positive then call function again
     if (x == 0)
-      return true;
-    else if (x == 1)
-      return false;
+      return true;         //if it's a 0 then it's even
+    else if (x == 1) 
+      return false;        //if it's a 1 then it's odd     
     else return isEven(x-2); //if it's neither 0 nor 1 calling function with (x-2) will yield same result.
   }
