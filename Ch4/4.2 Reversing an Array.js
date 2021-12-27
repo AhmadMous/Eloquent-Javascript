@@ -9,14 +9,14 @@
 // useful in more situations? Which one runs faster?
 
 reverseArray = function(arr){
-    let newarr = [];
-    for(let i=arr.length-1; i >= 0; i--){
-        newarr.push(arr[i]);
+    let newarr = [];                       // initialize new array
+    for(let i=arr.length-1; i >= 0; i--){  // traverse initial array from the end
+        newarr.push(arr[i]);               // pushing the values to start of new array
     }
-    return newarr;
+    return newarr;                         // return the new array
 }
 
-function reverseArrayInPlace(arr){
-    arr = reverseArray(arr);
-    return arr;
+function reverseArrayInPlace(arr){         // it's more practical to use function than create new one
+    arr = reverseArray(arr);               // but we can traverse from start filling end or vice versa
+    return arr;                            // reaching the middle, using a temp var for swapping
 }
