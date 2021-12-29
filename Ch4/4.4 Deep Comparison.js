@@ -14,26 +14,21 @@
 //
 // Opinion: This is really hard for a beginner who struggles with recursion, and the thought process in this book is not enough to teach
 // a first timer how to solve this, but the challenge definetly should help them
-function deepEqual(x,y){                                          // all this debugging for a silly reason smh
+function deepEqual(x,y){                                          
 
     if (typeof(x) !== typeof(y)){                                // if they are different types, then they're not deepequal
-     // console.log('different types', x, typeof(x),y, typeof(y))
         return false;
     }
 
     if (x === null && y === null){                                // if they're both null then they're strictly equal, this also works for undefined
-        // console.log('both strictly null');
         return true;
     }
 
     if (x === null || y === null){                                // if only one arg is null or unidentified and other oe isn't then they are not deepequal
-        // console.log('one arg is null');
         return false;
     }
 
     if (x===y){                                                   // if they are strictly equal then they are deepequal
-        // console.log(`x and y strictly equal`);
-        // console.log(x, y);
         return true;
     }
 
@@ -42,11 +37,8 @@ function deepEqual(x,y){                                          // all this de
         let xarr = Object.keys(x);                               // create an array of each arg's properties
         let yarr = Object.keys(y);
         if (xarr.length === yarr.length){                        // if they are the same number
-            // console.log(`same number of properties ${xarr.length}`);
             for (let prop of xarr){
-                // console.log("property is", prop);
                 if (!yarr.includes(prop)){                       // make sure that they are the same properties
-                    // console.log('exiting at first prop conditional');
                     return false;                                // else they are not deepequal
                 }
                 if (!deepEqual(x[prop], y[prop])){               // if they are same properties then test each of their values for deepequality
@@ -55,7 +47,5 @@ function deepEqual(x,y){                                          // all this de
             }
         }
     }
-    // console.log(x,y);
-    // console.log('final');
     return true;
 }
