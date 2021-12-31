@@ -6,3 +6,10 @@
 // and starts from the beginning.
 // When defining the function, you can use a regular loop to do the actual
 // looping.
+
+function loop(value, test, update, body){
+    while(test(value)){
+    body(value);
+    value = update(value);
+    }
+}
