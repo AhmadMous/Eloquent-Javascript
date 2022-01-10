@@ -34,7 +34,7 @@ class Group{
         this.size--;                                   // decrement group size
         }
     }
-    get length(){                                      // getter for length
+    get length(){                                      // getter for length, this wasn't required but helped for 6.3
         return this.size;                             
       }
 
