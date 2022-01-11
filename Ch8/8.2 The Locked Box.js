@@ -40,3 +40,4 @@ function withBoxUnlocked(body) {
     finally {
     box.lock();
     }
+}
