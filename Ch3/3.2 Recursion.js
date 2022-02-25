@@ -15,12 +15,26 @@
 // console.log(isEven(-1));
 // // → ??
 
-function isEven(x){
-    if (x < 0)
-      return isEven(x*-1); //if it's negative convert it to positive then call function again
-    if (x == 0)
-      return true;         //if it's a 0 then it's even
-    else if (x == 1) 
-      return false;        //if it's a 1 then it's odd     
-    else return isEven(x-2); //if it's neither 0 nor 1 calling function with (x-2) will yield same result.
+function isEven(x)
+{
+  // 0 remaining means number is even
+  if (x == 0)
+  {
+    return true;
   }
+
+  // 1 remaining means number is odd
+  if (x == 1)
+  {
+    return false;
+  }
+
+  // Convert negative numbers to positive then call function again
+  if (x < 0)
+  {
+    return isEven(x * -1);
+  }
+
+  // Reduce the size of the problem then call function again
+  return isEven(x - 2); 
+}
