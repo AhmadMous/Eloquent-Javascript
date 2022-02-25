@@ -7,8 +7,8 @@
 // #####
 // ######
 // #######
-//
-//solution: loop 7 times, adding a # each time to i and calling it
-for (let j = 1, i = "#"; j <= 7; i+="#", j++){
+
+// Loop 7 times, calling i in each iteration, i = "#", with extra "#" concatanated each iteration
+for (let j = 1, i = "#"; j <= 7; i += "#", j++){
 	console.log(i);
 }
