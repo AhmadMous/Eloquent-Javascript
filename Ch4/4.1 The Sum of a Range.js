@@ -10,26 +10,39 @@
 // to the old behavior. The function call range(1, 10, 2) should return [1, 3, 5,
 // 7, 9] . Make sure it also works with negative step values so that range(5, 2, -1)
 // produces [5, 4, 3, 2] .
-//i[0] -- 5, i[1] -- 4, i[3] -- 3,i[4] -- 2
+// i[0] -- 5, i[1] -- 4, i[3] -- 3,i[4] -- 2
 
-range = (start, end, step = 1) =>{
- let arr = [];                                  // initialize empty array
- n = Math.abs(end - start);                     // find distance between two points
- for(let i=0; i<=(n/Math.abs(step)); i++){      // iterate over array for the number of steps needed to cover the distance
-     if (i==0){                                 // if this is the first item in array, make it equal start            
-         arr.push(start);
-     }
-     else{                                      // else the item must equal previous item + the steps
-        arr.push(arr[i-1]+step);
-     }
- }
-return arr;                                     // return array representing the range
+// Note: this does not cover edge cases
+range = (start, end, step = 1) =>
+{
+	// Initialize empty array
+	let array = []; 
+
+	// Iterate over numbers, by starting with "start" and adding "step"
+	for (let number = start;; number += step)
+	{
+		// Add current number to array
+		array.push(number);
+
+		// Once number equals end boundary and is added, break out of loop
+		if (!(number - end))
+		{
+			break;
+		}
+	}
+
+// Return array representing the range
+return array;
 }
 
-function sum(arr){                              // iterates over array adding every number to a sumt variable representing total and returning that
-    let sumt = 0;
-    for (let i = 0; i<arr.length; i++){
-        sumt += arr[i];
-    }
-    return sumt;
+// Loop over array adding every number to total
+function sum(array)
+{
+	let sumTotal = 0;
+	for (let i = 0; i < array.length; i++)
+	{
+		sumTotal += array[i];
+	}
+	
+	return sumTotal;
 }
