@@ -19,15 +19,32 @@ range = (start, end, step = 1) =>
 	let array = []; 
 
 	// Iterate over numbers, by starting with "start" and adding "step"
-	for (let number = start;; number += step)
-	{
-		// Add current number to array
-		array.push(number);
+	// for (let number = start;; number += step)
+	// {
+	// 	// Add current number to array
+	// 	array.push(number);
 
-		// Once number equals end boundary and is added, break out of loop
-		if (!(number - end))
+	// 	// Once number equals end boundary and is added, break out of loop
+	// 	if (!(number - end))
+	// 	{
+	// 		break;
+	// 	}
+	// }
+
+	if (step > 0)
+	{
+		for (let number = start; number <= end; number += step)
 		{
-			break;
+			array.push(number);
+		}
+	}
+
+	// Loop ends when end is no longer smaller than current number
+	else 
+	{
+		for (let number = start; number >= end; number += step)
+		{
+			array.push(number);
 		}
 	}
 
