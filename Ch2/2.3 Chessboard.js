@@ -18,7 +18,7 @@ let size = 8;
 // Loop with i for number of rows
 for (let i = 1; i <= size; i++)
 {
-	// Loop with j for number of rows
+	// Loop with j for number of columns, aka length of row
 	for (let j = 1; j <= size; j++)
 	{
 		// If indicator is odd, print " "
@@ -30,7 +30,7 @@ for (let i = 1; i <= size; i++)
 		// Else print "#"
 		else
 		{
-    	text += "#";
+			text += "#";
 		}
 
 		// Increment indicator after every character in row, to switch parity
