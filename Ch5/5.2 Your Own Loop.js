@@ -7,9 +7,16 @@
 // When defining the function, you can use a regular loop to do the actual
 // looping.
 
-function loop(value, test, update, body){
-    while(test(value)){
-    body(value);
-    value = update(value);
+// The function takes the 4 inputs
+function loop(value, test, update, body)
+{
+    // Repeat while test on the value passes
+    while(test(value))
+    {
+        // Calling body with our current value
+        body(value);
+
+        // Updating value
+        value = update(value);
     }
 }
