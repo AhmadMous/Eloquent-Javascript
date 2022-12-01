@@ -8,41 +8,39 @@
 // “Functions and Side Effects” on page 54, which variant do you expect to be
 // useful in more situations? Which one runs faster?
 
+
+// Create new reversed array and return it
 reverseArray = function(arr)
 {
 
+    // Create new array of same length as old array
     let length = arr.length;
     let newarr = Array(length);
 
-    console.log(newarr);
-
-    for(let i = length - 1; i >= 0; i--)
-    {  // traverse initial array from the end
-        newarr.push(arr[i]);               // pushing the values to start of new array
+    // Loop over new array inserting elements in reverse order
+    for(let i = 0; i < length; i++)
+    {
+        newarr[i] = arr[length - 1 - i];
     }
-    console.log(newarr);
 
+    // Return new reversed array
     return newarr;
 }
 
-swap = function(x, y)
-{
-    temp = [x, y]
-    let z = x;
-    x = y;
-    y = z;
-}
-
+// Reverses array without creating a new array
 function reverseArrayInPlace(arr)
 {
+    // Limit prevents us from traversing more than half the array
     let length = arr.length;
-    let limit = arr.length / 2;
+    let limit = Math.floor(arr.length / 2);
 
+    // Traverse half the array, reversing elements with other half
     for (let i = 0; i <= limit; i++)
     {
-        console.log(arr[i], arr[length -1 - i]);
-        swap(arr[i], arr[length - i]);
-        console.log(arr[i], arr[length -1 - i]);
+        let temp = arr[i];
+        arr[i] = arr[length - i - 1];
+        arr[length - i - 1] = temp;
     }
+
     return arr;
 }
