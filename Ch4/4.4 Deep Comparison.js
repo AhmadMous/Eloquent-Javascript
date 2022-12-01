@@ -14,34 +14,48 @@
 //
 // Opinion: This is really hard for a beginner who struggles with recursion, and the thought process in this book is not enough to teach
 // a first timer how to solve this, but the challenge definetly should help them
+
 function deepEqual(x,y){                                          
 
-    if (typeof(x) !== typeof(y)){                                // if they are different types, then they're not deepequal
+    // if they are different types, then they're not deepequal
+    if (typeof(x) !== typeof(y)){                                
         return false;
     }
 
-    if (x === null && y === null){                                // if they're both null then they're strictly equal, this also works for undefined
+    // if they're both null then they're strictly equal, this also works for undefined
+    if (x === null && y === null){                                
         return true;
     }
 
-    if (x === null || y === null){                                // if only one arg is null or unidentified and other oe isn't then they are not deepequal
+    // if only one arg is null or unidentified and other oe isn't then they are not deepequal
+    if (x === null || y === null){                                
         return false;
     }
 
-    if (x===y){                                                   // if they are strictly equal then they are deepequal
+    // if they are strictly equal then they are deepequal
+    if (x === y){                                                   
         return true;
     }
 
 
-    if ((typeof(x) === 'object') && typeof(y) === 'object'){     // if they are both objects but aren't null then dig deeper
-        let xarr = Object.keys(x);                               // create an array of each arg's properties
+    // if they are both objects but aren't null then dig deeper
+    if ((typeof(x) === 'object') && typeof(y) === 'object'){
+        
+        // create an array of each arg's properties
+        let xarr = Object.keys(x);                               
         let yarr = Object.keys(y);
-        if (xarr.length === yarr.length){                        // if they are the same number
+
+        // if they are the same number
+        if (xarr.length === yarr.length){ 
+            
+            // make sure that they are the same properties else they are not deepequal
             for (let prop of xarr){
-                if (!yarr.includes(prop)){                       // make sure that they are the same properties
-                    return false;                                // else they are not deepequal
+                if (!yarr.includes(prop)){                       
+                    return false;        
                 }
-                if (!deepEqual(x[prop], y[prop])){               // if they are same properties then test each of their values for deepequality
+
+                // if they are same properties then test each of their values for deepequality
+                if (!deepEqual(x[prop], y[prop])){               
                     return false;
                 }
             }

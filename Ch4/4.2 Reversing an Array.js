@@ -8,15 +8,41 @@
 // “Functions and Side Effects” on page 54, which variant do you expect to be
 // useful in more situations? Which one runs faster?
 
-reverseArray = function(arr){
-    let newarr = [];                       // initialize new array
-    for(let i=arr.length-1; i >= 0; i--){  // traverse initial array from the end
+reverseArray = function(arr)
+{
+
+    let length = arr.length;
+    let newarr = Array(length);
+
+    console.log(newarr);
+
+    for(let i = length - 1; i >= 0; i--)
+    {  // traverse initial array from the end
         newarr.push(arr[i]);               // pushing the values to start of new array
     }
-    return newarr;                         // return the new array
+    console.log(newarr);
+
+    return newarr;
 }
 
-function reverseArrayInPlace(arr){         // it's more practical to use function than create new one
-    arr = reverseArray(arr);               // but we can traverse from start filling end or vice versa
-    return arr;                            // reaching the middle, using a temp var for swapping
+swap = function(x, y)
+{
+    temp = [x, y]
+    let z = x;
+    x = y;
+    y = z;
+}
+
+function reverseArrayInPlace(arr)
+{
+    let length = arr.length;
+    let limit = arr.length / 2;
+
+    for (let i = 0; i <= limit; i++)
+    {
+        console.log(arr[i], arr[length -1 - i]);
+        swap(arr[i], arr[length - i]);
+        console.log(arr[i], arr[length -1 - i]);
+    }
+    return arr;
 }
