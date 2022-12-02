@@ -1,5 +1,5 @@
 // The standard JavaScript environment provides another data structure called
-// Set . Like an instance of Map , a set holds a collection of values. Unlike Map ,
+// Set . Like an instance of Map, a set holds a collection of values. Unlike Map,
 // it does not associate other values with those—it just tracks which values
 // are part of the set. A value can be part of a set only once—adding it again
 // doesn’t have any effect.
@@ -14,39 +14,67 @@
 // ment and creates a group that contains all the values produced by iterating
 // over it.
 
-class Group{
-    constructor(){
-        this.content = [];                             // since we don't need value pairings, an array is a suitable data structure
-        this.size = 0;                                 // number of items in group
+// Class group definition
+class Group
+{
+    // Initializes empty group
+    constructor()
+    {
+        this.contents = [];
+        this.size = 0;
     }
 
-    add(value){
-        if ((this.content.indexOf(value)) === (-1)){   // we must make sure the value isn't inside when adding new ones
-            this.content.push(value);                  // if it's not then add it, if it is, do nothing
-            this.size++;                               // increment group size
+    // Adds a value
+    add(value)
+    {
+        // Assure value is not in group
+        if ((this.contents.indexOf(value)) === (-1))
+        {
+            this.contents.push(value);
+            this.size++;
         }
     }
 
-    delete(value){                                     // to delete a value from our object
-        let n = this.content.indexOf(value);           // we must first see if it exists, if it does, get its location, indexOf returns -1 if it's not there
-        if (n !== -1){                                 // if n isn't -1, then we will use returned index to delete 1 item from the array
-            this.content.splice(n,1);                  // at exactly the index of value n, the 1 in splice means 1 item or value
-        this.size--;                                   // decrement group size
+    // Deletes a value
+    delete(value)
+    {
+        // Return index of value in contents array, or -1 if it doesn´t exist
+        let index = this.contents.indexOf(value);
+
+        // If value exists in contents array, remove it
+        if (index !== -1)
+        {
+            this.contents.splice(index, 1);
+            this.size--;
         }
     }
-    get length(){                                      // getter for length, this wasn't required but helped for 6.3
-        return this.size;                             
-      }
 
-    has(value){
-        return this.content.includes(value);
+    // Returns the size of contents array
+    get length()
+    {
+        return this.size;
+    }
+
+    // Checks whether value is in contents array
+    has(value)
+    {
+        return this.contents.includes(value);
     }
     
-    static from(iterable){                             
-        let g = new Group;                             // create a new group
-        for (let element of iterable){                 // iterate over the iterable using a for..of loop
-            g.add(element);                            // add elements to group
+    // (iterable) => (group containing values produced by iterating over iterable)
+    static from(iterable)
+    {
+        // Create new group
+        let g = new Group;
+
+        // Iterate over iterable
+        for (let element of iterable)
+        {
+            // Add each item you iterate over to group
+            g.add(element);
         }
-        return g;                                      // return new group object to be held by binding
+
+        // Return the now-filled group
+        return g;
     }
 }

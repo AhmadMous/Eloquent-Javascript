@@ -7,59 +7,103 @@
 // It is okay if your iterator behaves strangely when the group is modified
 // during iteration.
 
-class Group{
-    constructor(){
-        this.content = [];                             // since we don't need value pairings, an array is a suitable data structure
-        this.size = 0;                                 // number of items in group
+class Group
+{
+    // Constructor of empty group
+    constructor()
+    {
+        this.contents = [];
+        this.size = 0;              
     }
 
-    add(value){
-        if ((this.content.indexOf(value)) === (-1)){   // we must make sure the value isn't inside when adding new ones
-            this.content.push(value);                  // if it's not then add it, if it is, do nothing
-            this.size++;                               // increment group size
+    // Adds a value to the group
+    add(value)
+    {
+        // If value isn´t in group, add it
+        if ((this.contents.indexOf(value)) === (-1))
+        {
+            this.contents.push(value);
+            this.size++;
         }
     }
 
-    delete(value){                                     // to delete a value from our object
-        let n = this.content.indexOf(value);           // we must first see if it exists, if it does, get its location, indexOf returns -1 if it's not there
-        if (n !== -1){                                 // if n isn't -1, then we will use returned index to delete 1 item from the array
-            this.content.splice(n,1);                  // at exactly the index of value n, the 1 in splice means 1 item or value
-        this.size--;                                   // decrement group size
+    // Deletes value from a group
+    delete(value)
+    {
+        // Find possible index of value in contents array
+        let index = this.contents.indexOf(value);
+
+        // If it does exist, remove it
+        if (index !== -1)
+        {
+            this.contents.splice(index, 1);
+            this.size--;
         }
     }
-    get length(){                                      // getter for length
-        return this.size;                             
-      }
 
-    has(value){
-        return this.content.includes(value);
+    // Getter for length
+    get length()
+    {
+        return this.size;
+    }
+
+    // Returns whether value is in contents array
+    has(value)
+    {
+        return this.contents.includes(value);
     }
     
-    [Symbol.iterator](){
+    // Returns group iterator feom input group
+    [Symbol.iterator]()
+    {
         return new GroupIterator(this);
     }
-    static from(iterable){                             
-        let g = new Group;                             // create a new group
-        for (let element of iterable){                 // iterate over the iterable using a for..of loop
-            g.add(element);                            // add elements to group
+
+    // Static method that creates new group containing elements of iterable
+    static from(iterable)
+    {
+        // Create new group        
+        let g = new Group;
+
+        // Iterate over elements of iterable, adding to the group
+        for (let element of iterable)
+        {
+            g.add(element);
         }
-        return g;                                      // return new group object to be held by binding
+
+        // Return new group
+        return g;
     }
 }
 
-class GroupIterator{                                   // group iterator class
-    constructor(group){                                
-        this.current = 0;                              // binding for current index
-        this.group = group;                            // holding the group passed as argument
+// Class for iterator of group class
+class GroupIterator
+{
+    constructor(group)
+    {                 
+        // Bindings for current index and input group
+        this.current = 0;
+        this.group = group;
     }
-    next(){
-        if (this.current === this.group.size){         // if index is same as group size, then we have reached the end of items
-            return {done: true}                        // reflect that with the return
+
+    // Next method
+    next()
+    {
+        // End of items reached if index reaches size of group
+        if (this.current === this.group.size)
+        {
+            // Returns object signifying we are done iterating
+            return {done: true}
         }
-        let value = {                                  // value we return with the next() method
-            value : this.group.content[this.current++],// grabbing the value of item at current index and incrementing the index
-            done: false                                // as we have not yet finished with iterating, done is false
+
+        // Binding for object we will return with the next()
+        let value = 
+        {
+            // Grabs current value then increments index
+            value : this.group.contents[this.current++],
+            done: false
         }
+
         return value;                                  
     }
 }
