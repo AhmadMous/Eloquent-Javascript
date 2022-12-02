@@ -6,14 +6,27 @@
 // tion as parameters. Write two versions, one using a loop and one using the
 // some method.
 
+// Iterative method using a for loop
 function every(array, test) {
-    for (let i = 0; i < array.length; i++){
-        if (!test(array[i])) return false;
+
+    // Loop over elements
+    for (let i = 0; i < array.length; i++)
+    {
+
+        // Test returns false for at least one element
+        if (!test(array[i]))
+        {
+            return false;
+        }
     }
+
+    // No element fails the test
     return true;
   }
 
-function every(array, test){                  // every returns true when no element in array returns false when tested
-    return !array.some(item => !test(item));  // it is enough for one item to fail the test or succeed !test for some to return true for the some function
-}                                             // then ! will make that true false, 1 fail then every is false
-                                              // meanwhile if some returns false then that false will be changed to true because if none fails then all pass
+
+// If it fails for some item, return false
+function every(array, test)
+{
+    return !array.some(item => !test(item));
+}
