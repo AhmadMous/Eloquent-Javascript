@@ -12,36 +12,60 @@
 // Why do you need only one PGroup.empty value, rather than having a func-
 // tion that creates a new, empty map every time?
 
-class PGroup{
-    // create object with empty array as default
-    constructor(content = []){
+class PGroup
+{
+    // Initialize empty array for storage
+    constructor(content = [])
+    {
         this.content = content;
-        // console.log(content);
+        Object.freeze(this.content);
     }
 
-    add(value){
-        // if value doesn't exist in group
-        if ((this.content.indexOf(value)) === (-1)){
+    // Returns new PGroup instance wth the given member added
+    add(value)
+    {
+        // If value doesn't exist in group
+        if ((this.content.indexOf(value)) === (-1))
+        {
             // return new group with value added
             return new PGroup(this.content.concat(value));
-            // else return a copy of the group unchanged
-        } else return new PGroup(this.content);
+        }
+
+        // Else return new group with same content
+        else
+        return new PGroup(this.content);
     }
 
-    delete(value){                                    
-        let n = this.content.indexOf(value);
+    // Returns new PGroup instance with the given member deleted
+    delete(value)
+    {                                    
+        let index = this.content.indexOf(value);
         // if value exists in group
-        if (n !== -1){             
+        if (index !== -1)
+        {             
             // return new group with valuer removed                   
             return new PGroup(this.content.filter(s => s !== value));
         // else return a copy of the group unchanged
-        } else return PGroup(this.content);
+        }
+
+        else return PGroup(this.content);
     }
 
-    has(value){
+    has(value)
+    {
         return this.content.includes(value);
     }
     
 }
-// by default a new group is created empty
+// By default a new group is created empty
 PGroup.empty = new PGroup;
+
+// More groups can be created from the single empty group and since
+// methods return new groups every time, there is no need for more than
+// One empty group
+
+// Example for testing
+a = PGroup.empty.add("a");
+console.log(PGroup.empty)
+console.log(a)
+console.log(PGroup.empty)

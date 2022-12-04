@@ -5,4 +5,4 @@
 
 // Your code here
 
-// runRobotAnimation(VillageState.random(), yourRobot, memory);
+runRobotAnimation(VillageState.random(), yourRobot, memory);
