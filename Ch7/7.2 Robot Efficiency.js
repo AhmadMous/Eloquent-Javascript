@@ -3,9 +3,9 @@
 // How could those be improved? If you solved the previous exercise, you might want to use your
 // compareRobots function to verify whether you improved the robot.
 
+// This robot chooses closest interestong destination, prioritizing pick ups over drop offs
 function yourRobot({place, parcels}, route)
 {
-
     // If previous path reached
     if (route.length == 0)
     {
@@ -13,7 +13,7 @@ function yourRobot({place, parcels}, route)
         route = closestDest(roadGraph, place, parcels);
     }
 
-    // Keep on same path
+    // Proceed same path
     return {direction: route[0], memory: route.slice(1)};
 }
 
@@ -26,23 +26,20 @@ function minimizer(a, b)
 // Returns route to closest pick up/drop off point
 function closestDest(graph, place, parcels)
 {
-    // Seperate parcels into drop off/ pick up destination arrays
-    let closestAddress = parcels.filter(box => box.place == place).map(box => box.address);
-    let closestPlace = parcels.filter(box => box.place != place).map(box => box.place);
-
-    // Map each destination to its route
-    closestAddress = closestAddress.map(box => findRoute(graph, place, box));
-    closestPlace = closestPlace.map(box => findRoute(graph, place, box));
+    // Seperate parcels into drop off/ pick up destination arrays, then map parcels to routes
+    let closestAddress = parcels.filter(box => box.place == place).map(box => findRoute(graph, place, box.address));
+    let closestPlace = parcels.filter(box => box.place != place).map(box => findRoute(graph, place, box.place));
 
     // Reduce each array to route of closest destination
-    closestAddress = closestAddress.reduce(minimizer)
-    closestPlace = closestPlace.reduce(minimizer)
+    let maxAddress = new Array(13); 
+    closestAddress = closestAddress.reduce(minimizer, maxAddress);
+    closestPlace = closestPlace.reduce(minimizer, maxAddress);
 
     // Return shortest route to an item
-    return minimizer(closestAddress, closestDest)
+    return minimizer(closestAddress, closestPlace);
 }
 
-// Pathfinding algorithm
+// Pathfinding algorithm, of BFS nature
 function findRoute(graph, from, to)
 {
     let work = [{at: from, route: []}];
