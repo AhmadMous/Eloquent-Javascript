@@ -63,4 +63,4 @@ function findRoute(graph, from, to)
     }
 }
 
-runRobotAnimation(VillageState.random(), yourRobot, memory);
+runRobotAnimation(VillageState.random(), yourRobot, []);
