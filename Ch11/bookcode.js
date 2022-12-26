@@ -364,6 +364,7 @@ async function findInStorage(nest, name) {
 }
 
 // name is string, it's a property name, nest is node, source is also a string
+// Source is name of nest which has the storage we will look through
 function anyStorage(nest, source, name) {
 
   // If source is the same as nest, simply return storage from that nest
